@@ -82,7 +82,9 @@ a{color:var(--link)}
 
 /* cartes */
 .card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px;display:grid;gap:12px;min-width:0}
-.hero{background:var(--sage-soft);border-radius:20px;padding:20px 18px;display:grid;gap:14px;min-width:0}
+.hero{position:relative;background:var(--sage-soft);border-radius:20px;padding:20px 18px;display:grid;gap:14px;min-width:0}
+.rbadge{position:absolute;top:14px;right:14px;display:inline-flex;align-items:center;gap:5px;background:var(--cta);color:var(--on-cta);font:700 12px/1 var(--f-body);padding:7px 10px;border-radius:999px;box-shadow:0 2px 8px rgba(0,0,0,.15)}
+.rbadge svg{stroke:currentColor}
 .hero h1{font-size:34px}
 .stack{display:grid;gap:8px;min-width:0}
 
@@ -386,7 +388,7 @@ function dow(d){ return (d.getDay()+6)%7; }
 function weekStart(d){ return new Date(d.getFullYear(),d.getMonth(),d.getDate()-dow(d)); }
 function fmtDate(s){ return parseISO(s).toLocaleDateString("fr-FR",{day:"numeric",month:"short"}); }
 function doneCount(){ return Object.keys(S.logs).length; }
-function locked(n){ var nx=nextN(); return !S.logs[n] && nx!==null && n>nx; }
+function locked(n){ if(isRedo()) return false; var nx=nextN(); return !S.logs[n] && nx!==null && n>nx; }
 function nextN(){ for(var i=1;i<=16;i++){ if(!S.logs[i]) return i; } return null; }
 function weekOf(n){ return Math.floor((n-1)/2)+1; }
 function zone(n){ return n<=2?1:n<=4?2:n<=6?3:n<=8?4:5; }
@@ -402,6 +404,7 @@ function icon(name,size){
     target:'<circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1"/>',
     bulb:'<path d="M9 18h6M10 21h4M12 3a6 6 0 0 0-4 10.5c.7.7 1 1.5 1 2.5h6c0-1 .3-1.8 1-2.5A6 6 0 0 0 12 3z"/>',
     check:'<path d="M5 12.5l4.5 4.5L19 7.5"/>',
+    repeat:'<path d="M17 2l3 3-3 3"/><path d="M4 11V9a4 4 0 0 1 4-4h12"/><path d="M7 22l-3-3 3-3"/><path d="M20 13v2a4 4 0 0 1-4 4H4"/>',
     play:'<path d="M8 5.5v13l11-6.5z" fill="currentColor" stroke="none"/>',
     lock:'<rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/>',
     back:'<path d="M15 5l-7 7 7 7"/>',
@@ -540,10 +543,10 @@ function weekStrip(){
 function viewHome(){
   var done=doneCount(), next=nextN(), h=topbar(true)+'<p class="hello">'+hello()+'</p>';
   if(next===null){
-    h+='<section class="hero"><p class="eyebrow">Programme terminé</p><h1>Mission accomplie</h1><p>Tu as fait tes 16 séances. Ce n’est pas une fin, c’est une mise à jour : ton corps est prêt pour de nouveaux défis.</p>'+progressBar()+'</section>'+finale();
+    h+='<section class="hero">'+roundBadge()+'<p class="eyebrow">Programme terminé</p><h1>Mission accomplie</h1><p>Tu as fait tes 16 séances. Ce n’est pas une fin, c’est une mise à jour : ton corps est prêt pour de nouveaux défis.</p>'+progressBar()+'</section>'+finale();
   } else {
     var wk=weekOf(next);
-    h+='<section class="hero"><p class="eyebrow">'+(done===0?'Ta première séance':'Semaine '+wk+' sur 8')+'</p>'+
+    h+='<section class="hero">'+roundBadge()+'<p class="eyebrow">'+(done===0?'Ta première séance':'Semaine '+wk+' sur 8')+'</p>'+
       '<h1>Séance '+next+'</h1>'+
       '<div class="chips"><span class="chip">30 min</span><span class="chip">Renfo + cardio</span><span class="chip">'+(isRedo()?'Intensité soutenue':'Intensité modérée')+'</span></div>'+
       needsHtml(next)+
@@ -833,6 +836,7 @@ function viewOnboarding(){
   }
   return h;
 }
+function roundBadge(){ if(!isRedo()) return ''; var r=S.round||2; return '<span class="rbadge" title="Tu as déjà validé le programme une fois">'+icon("repeat",14)+(r)+'ᵉ tour</span>'; }
 function isRedo(){ return (S.round||1)>=2; }
 function intensityLis(){
   if(isRedo()) return '<li><b>Renfo :</b> cherche à faire plus de répétitions ou à mettre plus d’amplitude sur tes mouvements. Garde un geste contrôlé. Il y a 2 tours par circuit : ajuste la difficulté au second.</li><li><b>Cardio :</b> mets plus de vitesse pour être à un effort de 6, voire 7 sur 10 : la conversation devient difficile et la respiration est forte.</li>';
