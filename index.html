@@ -1038,6 +1038,7 @@ function diplomaSheet(){
 }
 /* ---------- Installation ---------- */
 var deferredInstall=null;
+window.addEventListener("appinstalled",function(){ ui.instDone=true; if(document.getElementById("instpage")) render(); });
 window.addEventListener("beforeinstallprompt",function(e){ e.preventDefault(); deferredInstall=e; if(document.getElementById("instpage")) render(); });
 function isStandalone(){ try{ return (window.matchMedia&&window.matchMedia("(display-mode: standalone)").matches)||window.navigator.standalone===true; }catch(e){ return false; } }
 function isIOS(){ var u=navigator.userAgent||""; return /iphone|ipad|ipod/i.test(u)||(navigator.platform==="MacIntel"&&navigator.maxTouchPoints>1); }
@@ -1059,7 +1060,7 @@ function viewInstall(){
     '<p class="ilead">Le programme s’utilise comme une vraie application, installée sur ton téléphone. Ça prend 30 secondes, sans passer par l’App Store.</p>'+
     '<ul class="ibul">'+lis+'</ul>'+
     '<section class="card"><h2>Installer sur mon téléphone</h2><div class="seg seg2" style="margin-top:4px"><button type="button" data-act="phone-pick" data-v="ios" aria-pressed="'+ios+'">iPhone</button><button type="button" data-act="phone-pick" data-v="android" aria-pressed="'+(!ios)+'">Android</button></div>'+installSteps()+'</section>'+
-    '<div class="idone"><b>C’est installé !</b> Ouvre <b>Réveil musculaire</b> <img alt="" src="'+LOGO+'"> depuis ton écran d’accueil pour commencer.</div>'+
+    (ui.instDone?'<div class="idone"><b>C’est installé !</b> Ouvre <b>Réveil musculaire</b> <img alt="" src="'+LOGO+'"> depuis ton écran d’accueil pour commencer.</div>':'<button class="btn ghost block" type="button" data-act="inst-done">J’ai installé l’application</button>')+
     '<button class="link-btn" type="button" data-act="web-skip">Continuer dans le navigateur</button>'+
   '</div>';
 }
@@ -1258,6 +1259,7 @@ document.addEventListener("click",function(e){
   if(a==="install"){ if(deferredInstall){ var dp=deferredInstall; deferredInstall=null; try{ dp.prompt(); dp.userChoice.then(function(){ render(); closeLayer(); }); }catch(e){} } return; }
   if(a==="install-help"){ openLayer('<h2>Installer l’application</h2><p class="muted">Elle s’ouvre alors en plein écran, sans barre d’adresse, avec sa propre icône.</p>'+installSteps()+'<button class="btn block" data-act="close">Fermer</button>'); return; }
   if(a==="phone-pick"){ S.phone=(v==="ios")?"ios":"android"; save(); render(); return; }
+  if(a==="inst-done"){ ui.instDone=true; render(); window.scrollTo(0,document.body.scrollHeight); return; }
   if(a==="web-skip"){ S.webSkip=true; save(); render(); window.scrollTo(0,0); return; }
   if(a==="install-dismiss"){ S.installDismissed=true; save(); render(); return; }
   if(a==="gcal"){
