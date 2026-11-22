@@ -11,6 +11,18 @@
 <meta name="mobile-web-app-capable" content="yes">
 <link rel="icon" type="image/png" href="icon-192.png">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="apple-touch-startup-image" media="(device-width: 440px) and (device-height: 956px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)" href="splash/splash-1320x2868.png">
+<link rel="apple-touch-startup-image" media="(device-width: 402px) and (device-height: 874px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)" href="splash/splash-1206x2622.png">
+<link rel="apple-touch-startup-image" media="(device-width: 430px) and (device-height: 932px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)" href="splash/splash-1290x2796.png">
+<link rel="apple-touch-startup-image" media="(device-width: 393px) and (device-height: 852px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)" href="splash/splash-1179x2556.png">
+<link rel="apple-touch-startup-image" media="(device-width: 428px) and (device-height: 926px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)" href="splash/splash-1284x2778.png">
+<link rel="apple-touch-startup-image" media="(device-width: 390px) and (device-height: 844px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)" href="splash/splash-1170x2532.png">
+<link rel="apple-touch-startup-image" media="(device-width: 375px) and (device-height: 812px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)" href="splash/splash-1125x2436.png">
+<link rel="apple-touch-startup-image" media="(device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)" href="splash/splash-1242x2688.png">
+<link rel="apple-touch-startup-image" media="(device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)" href="splash/splash-828x1792.png">
+<link rel="apple-touch-startup-image" media="(device-width: 414px) and (device-height: 736px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)" href="splash/splash-1242x2208.png">
+<link rel="apple-touch-startup-image" media="(device-width: 375px) and (device-height: 667px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)" href="splash/splash-750x1334.png">
+<link rel="apple-touch-startup-image" media="(device-width: 320px) and (device-height: 568px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)" href="splash/splash-640x1136.png">
 <style>
 :root{color-scheme:light;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
 html{-webkit-text-size-adjust:100%}
@@ -19,6 +31,7 @@ img{max-width:100%}
 [hidden]{display:none!important}
 </style>
 <title>Réveil musculaire à la maison</title>
+<meta name="color-scheme" content="light">
 <meta name="referrer" content="strict-origin-when-cross-origin">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -35,19 +48,12 @@ img{max-width:100%}
   --f-display:'Unbounded','Arial Black',system-ui,sans-serif;
   --f-body:'Outfit',system-ui,-apple-system,'Segoe UI',sans-serif;
 }
-@media (prefers-color-scheme:dark){
-  :root:not([data-theme="light"]){
-    --bg:#12170F; --card:#1B2217; --ink:#EDF0E6; --ink-2:#A3B09A; --line:#2D3828;
-    --sage:#8DB874; --sage-soft:#243020; --cta:#A9CE8F; --on-cta:#10180C; --link:#A9CE8F;
-    --shadow:0 10px 26px -14px rgba(0,0,0,.7); --scrim:rgba(0,0,0,.65);
-    color-scheme:dark;
-  }
-}
-:root[data-theme="dark"]{
-  --bg:#12170F; --card:#1B2217; --ink:#EDF0E6; --ink-2:#A3B09A; --line:#2D3828;
-  --sage:#8DB874; --sage-soft:#243020; --cta:#A9CE8F; --on-cta:#10180C; --link:#A9CE8F;
-  --shadow:0 10px 26px -14px rgba(0,0,0,.7); --scrim:rgba(0,0,0,.65);
-  color-scheme:dark;
+@media (orientation:landscape) and (max-height:560px){
+  body{padding-left:env(safe-area-inset-left,0px);padding-right:env(safe-area-inset-right,0px)}
+  .wrap{max-width:720px}
+  .tabs-in{max-width:720px}
+  .player:not(.wide){width:min(100%,calc((100vh - 150px)*0.58))}
+  .evbtn{min-height:0;aspect-ratio:auto;padding:14px 16px;grid-auto-flow:column;justify-content:center;gap:14px}
 }
 *{box-sizing:border-box}
 body{
@@ -124,9 +130,16 @@ input.fld{width:100%;min-height:50px;font:400 17px/1.3 var(--f-body);padding:12p
 .dipbox img{width:min(100%,280px);border-radius:12px;display:block;border:1px solid var(--line)}
 .fab{position:fixed;left:50%;transform:translateX(-50%);bottom:calc(78px + env(safe-area-inset-bottom,0px));z-index:25;width:min(calc(100% - 32px),440px);box-shadow:0 12px 28px -10px rgba(20,28,16,.55)}
 .evid{display:grid;min-width:0}
-.evbtn{appearance:none;display:flex;align-items:center;gap:12px;width:100%;text-align:left;padding:12px 14px;border-radius:14px;border:1.5px solid var(--line);background:var(--sage-soft);color:var(--ink);font:600 15px/1.3 var(--f-body);cursor:pointer;text-decoration:none;min-width:0}
-.evbtn small{display:block;font:500 13px/1.3 var(--f-body);color:var(--ink-2)}
-.evbtn .pic{flex:none;width:38px;height:38px;border-radius:50%;background:var(--cta);color:var(--on-cta);display:grid;place-items:center}
+.whyhl{background:var(--sage-soft);border-color:var(--sage);border-left:6px solid var(--cta)}
+.whybig{display:block;font:700 22px/1.3 var(--f-body);color:var(--ink);word-break:break-word}
+.evbtn{appearance:none;position:relative;display:grid;place-items:center;align-content:center;gap:12px;width:100%;aspect-ratio:16/9;min-height:190px;padding:16px;border-radius:18px;border:0;background:radial-gradient(120% 120% at 50% 0%,#5E8F43 0%,#35591D 70%);color:#fff;font:600 16px/1.3 var(--f-body);text-align:center;cursor:pointer;text-decoration:none;min-width:0;overflow:hidden;box-shadow:var(--shadow)}
+.evbtn .ethumb{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.evbtn .eshade{position:absolute;inset:0;background:linear-gradient(to top,rgba(10,16,8,.7),rgba(10,16,8,.08) 60%)}
+.evbtn .pic,.evbtn .elab{position:relative}
+.evbtn .elab{text-shadow:0 1px 6px rgba(0,0,0,.5)}
+.evbtn .pic{width:58px;height:58px;border-radius:50%;background:rgba(253,252,248,.96);color:#1E2B1A;display:grid;place-items:center;box-shadow:0 6px 18px rgba(0,0,0,.35)}
+.evbtn .elab{display:grid;gap:2px;max-width:300px}
+.evbtn small{display:block;font:500 13px/1.3 var(--f-body);opacity:.9}
 .evid .frame{position:relative;aspect-ratio:16/9;border-radius:14px;overflow:hidden;background:#000}
 .evid .frame .prev{position:absolute;inset:0;display:grid;place-content:center;justify-items:center;gap:10px;background:#0F1A0B;color:#fff;text-decoration:none;text-align:center;padding:14px}
 .evid .frame .prev .pbtn{width:60px;height:60px;border-radius:50%;background:rgba(253,252,248,.95);color:#1E2B1A;display:grid;place-items:center}
@@ -167,8 +180,6 @@ select.fld{width:100%;min-height:50px;font:400 17px/1.3 var(--f-body);padding:12
 label.lbl{font:600 16px/1.3 var(--f-body)}
 .msg{font-size:14px;min-height:20px;color:var(--ink-2)}
 .msg.err{color:var(--z5);font-weight:600}
-@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .msg.err{color:#FF8A80}}
-:root[data-theme="dark"] .msg.err{color:#FF8A80}
 
 /* listes programme */
 .weekcard{display:grid;gap:0;padding:0;overflow:hidden}
@@ -190,6 +201,23 @@ label.lbl{font:600 16px/1.3 var(--f-body)}
 .rowneeds{display:flex;align-items:center;gap:4px;margin-left:auto;padding-left:8px}
 .stitle{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
 .readpill{font:600 12px/1 var(--f-body);padding:5px 9px;border-radius:999px;background:var(--sage-soft);color:var(--cta);white-space:nowrap}
+.instpage{padding-top:6px}
+.ilogo{width:88px;height:88px;border-radius:50%;box-shadow:var(--shadow)}
+.ihero{font:800 30px/1.1 var(--f-display);text-transform:uppercase;letter-spacing:-.01em}
+.ilead{font-size:17px;line-height:1.5;color:var(--ink)}
+.ibul{list-style:none;margin:0;padding:0;display:grid;gap:12px}
+.ibul li{display:grid;grid-template-columns:22px 1fr;gap:12px;align-items:start;font-size:16px;line-height:1.4}
+.ibul i{width:22px;height:22px;border-radius:50%;background:var(--cta);margin-top:1px}
+.idone{background:var(--sage-soft);border-radius:18px;padding:18px;font-size:16px;line-height:1.7}
+.idone img{width:30px;height:30px;border-radius:8px;vertical-align:middle}
+.row.locked{opacity:.6;cursor:default}
+.row.locked .th{position:relative}
+.row.locked .th img{filter:grayscale(1) brightness(.85)}
+.row.locked .th .lk{position:absolute;inset:0;display:grid;place-items:center;background:rgba(30,43,26,.45);color:#fff}
+.row.locked .th .lk svg{stroke:#fff}
+.row.locked .st{display:inline-flex;align-items:center;gap:4px}
+.row.locked .st svg{stroke:currentColor}
+.lockedbtn{display:inline-flex;align-items:center;justify-content:center;gap:6px;opacity:.55;cursor:default}
 .row.done{background:var(--sage-soft);box-shadow:inset 4px 0 0 var(--cta)}
 .row.done .th{position:relative}
 .row.done .th img{opacity:.9}
@@ -256,7 +284,7 @@ details[open] summary::after{transform:rotate(-135deg)}
 .bar i{display:block;height:100%;border-radius:6px}
 .brow{display:grid;gap:6px}
 .brow div.l{display:flex;justify-content:space-between;gap:8px;font-weight:600}
-.obar{display:grid;grid-template-columns:repeat(3,1fr);gap:6px}
+.obar{display:grid;grid-template-columns:repeat(4,1fr);gap:6px}
 .obar i{height:6px;border-radius:3px;background:var(--line)}
 .obar i.on{background:var(--cta)}
 .foot{font-size:12.5px;color:var(--ink-2);text-align:center;padding:6px 0 2px}
@@ -340,10 +368,10 @@ var LINKS = {
 };
 
 /* ---------- État ---------- */
-var S = {slotTimes:{}, agendaDone:false, safetySeen:false, tipsRead:{}, midTipShown:false, plan:null, logs:{}, why:["","","","",""], archive:[], onboarded:false, seenIntensity:false, startDate:null, started:false, carnetTipSeen:false, missedShown:[], tipIdx:0, tipClickedOn:null, midSeen:false, endSeen:false, round:1, theme:"auto", name:"", icsTime:"18:00", installDismissed:false};
+var S = {webSkip:false, phone:null, slotTimes:{}, agendaDone:false, safetySeen:false, tipsRead:{}, midTipShown:false, plan:null, logs:{}, why:["","","","",""], archive:[], onboarded:false, seenIntensity:false, startDate:null, started:false, carnetTipSeen:false, missedShown:[], tipIdx:0, tipClickedOn:null, midSeen:false, endSeen:false, round:1, theme:"auto", name:"", icsTime:"18:00", installDismissed:false};
 try{
   var raw = localStorage.getItem(KEY);
-  if(raw){ var p = JSON.parse(raw); if(p && typeof p==="object"){ S.plan=p.plan||null; S.logs=p.logs||{}; S.why=(p.why&&p.why.length===5)?p.why:S.why; S.archive=p.archive||[]; S.onboarded=p.onboarded===true; S.seenIntensity=p.seenIntensity===true; S.startDate=p.startDate||null; S.started=p.started===true; S.carnetTipSeen=p.carnetTipSeen===true; S.midSeen=p.midSeen===true; S.round=Math.max(1,parseInt(p.round,10)||1); S.endSeen=p.endSeen===true; S.theme=(p.theme==="light"||p.theme==="dark")?p.theme:"auto"; S.installDismissed=p.installDismissed===true; S.name=(typeof p.name==="string")?p.name.slice(0,30):""; S.icsTime=/^\d{2}:\d{2}$/.test(p.icsTime||"")?p.icsTime:"18:00"; S.missedShown=Array.isArray(p.missedShown)?p.missedShown:(p.missedShown?[p.missedShown]:[]); S.slotTimes=(p.slotTimes&&typeof p.slotTimes==='object'&&!Array.isArray(p.slotTimes))?p.slotTimes:{}; S.agendaDone=p.agendaDone===true; S.safetySeen=p.safetySeen===true; S.midTipShown=p.midTipShown===true; S.tipsRead=(p.tipsRead&&typeof p.tipsRead==='object'&&!Array.isArray(p.tipsRead))?p.tipsRead:{}; S.tipIdx=p.tipIdx||0; S.tipClickedOn=p.tipClickedOn||null; } }
+  if(raw){ var p = JSON.parse(raw); if(p && typeof p==="object"){ S.plan=p.plan||null; S.logs=p.logs||{}; S.why=(p.why&&p.why.length===5)?p.why:S.why; S.archive=p.archive||[]; S.onboarded=p.onboarded===true; S.seenIntensity=p.seenIntensity===true; S.startDate=p.startDate||null; S.started=p.started===true; S.carnetTipSeen=p.carnetTipSeen===true; S.midSeen=p.midSeen===true; S.round=Math.max(1,parseInt(p.round,10)||1); S.endSeen=p.endSeen===true; S.theme=(p.theme==="light"||p.theme==="dark")?p.theme:"auto"; S.installDismissed=p.installDismissed===true; S.name=(typeof p.name==="string")?p.name.slice(0,30):""; S.icsTime=/^\d{2}:\d{2}$/.test(p.icsTime||"")?p.icsTime:"18:00"; S.missedShown=Array.isArray(p.missedShown)?p.missedShown:(p.missedShown?[p.missedShown]:[]); S.webSkip=p.webSkip===true; S.phone=(p.phone==='ios'||p.phone==='android')?p.phone:null; S.slotTimes=(p.slotTimes&&typeof p.slotTimes==='object'&&!Array.isArray(p.slotTimes))?p.slotTimes:{}; S.agendaDone=p.agendaDone===true; S.safetySeen=p.safetySeen===true; S.midTipShown=p.midTipShown===true; S.tipsRead=(p.tipsRead&&typeof p.tipsRead==='object'&&!Array.isArray(p.tipsRead))?p.tipsRead:{}; S.tipIdx=p.tipIdx||0; S.tipClickedOn=p.tipClickedOn||null; } }
 }catch(e){}
 function save(){ try{ localStorage.setItem(KEY, JSON.stringify(S)); }catch(e){} }
 
@@ -358,6 +386,7 @@ function dow(d){ return (d.getDay()+6)%7; }
 function weekStart(d){ return new Date(d.getFullYear(),d.getMonth(),d.getDate()-dow(d)); }
 function fmtDate(s){ return parseISO(s).toLocaleDateString("fr-FR",{day:"numeric",month:"short"}); }
 function doneCount(){ return Object.keys(S.logs).length; }
+function locked(n){ var nx=nextN(); return !S.logs[n] && nx!==null && n>nx; }
 function nextN(){ for(var i=1;i<=16;i++){ if(!S.logs[i]) return i; } return null; }
 function weekOf(n){ return Math.floor((n-1)/2)+1; }
 function zone(n){ return n<=2?1:n<=4?2:n<=6?3:n<=8?4:5; }
@@ -374,6 +403,7 @@ function icon(name,size){
     bulb:'<path d="M9 18h6M10 21h4M12 3a6 6 0 0 0-4 10.5c.7.7 1 1.5 1 2.5h6c0-1 .3-1.8 1-2.5A6 6 0 0 0 12 3z"/>',
     check:'<path d="M5 12.5l4.5 4.5L19 7.5"/>',
     play:'<path d="M8 5.5v13l11-6.5z" fill="currentColor" stroke="none"/>',
+    lock:'<rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/>',
     back:'<path d="M15 5l-7 7 7 7"/>',
     runner:'<circle cx="26" cy="11" r="3" /><path d="M25 17l-4 9M25 17l7 3M25 17l-6 3M21 26l7 5M21 26l-4 8"/>'
   };
@@ -454,7 +484,8 @@ function tipCard(){
 /* ---------- Vidéos explicatives ---------- */
 function explVid(key){
   var e=EXPL[key]; if(!e) return "";
-  var inner='<span class="pic">'+icon("play",18)+'</span><span>'+e.label+'<small>Appuie pour la regarder ici</small></span>';
+  var yid=ytId(e.url), th=yid?'<img class="ethumb" alt="" src="https://i.ytimg.com/vi/'+yid+'/hqdefault.jpg" onerror="this.remove()">':'';
+  var inner=th+'<span class="eshade"></span><span class="pic">'+icon("play",26)+'</span><span class="elab">'+e.label+'<small>Appuie pour la regarder ici</small></span>';
   var id=EMBED?ytId(e.url):null;
   if(id) return '<div class="evid"><button type="button" class="evbtn" data-act="play-expl" data-yt="'+id+'">'+inner+'</button></div>';
   return '<div class="evid"><a class="evbtn" href="'+esc(e.url)+'" target="_blank" rel="noopener">'+inner.replace('Appuie pour la regarder ici','S’ouvre sur YouTube')+'</a></div>';
@@ -599,6 +630,10 @@ function viewProgramme(){
       var lg=S.logs[n], cls=lg?'done':(n===next?'next':''), sub;
       if(lg) sub=fmtDate(lg.date)+' · '+(lg.pref==='renfo'?'Renfo':'Cardio')+' préféré · RPE '+lg.rpe;
       else sub=NEEDS[n]?('Prévoir : '+NEEDS[n].join(" + ")):'30 min · renfo + cardio';
+      if(locked(n)){
+        h+='<div class="row locked" aria-disabled="true"><span class="th"><img alt="" src="'+IMG[n-1]+'"><i class="lk">'+icon("lock",20)+'</i></span><span class="t"><b>Séance '+n+'</b><span>Disponible après la séance '+(n-1)+'</span></span><span class="st">'+icon("lock",13)+' Verrouillée</span></div>';
+        continue;
+      }
       h+='<a class="row '+cls+(NEEDS[n]?' hasneeds':'')+'" href="#seance-'+n+'"><span class="th"><img alt="" src="'+IMG[n-1]+'"></span><span class="t"><b>Séance '+n+'</b><span>'+esc(sub)+'</span></span>'+(NEEDS[n]?'<span class="rowneeds" aria-hidden="true">'+needIcons(n,30)+'</span>':'')+'<span class="st">'+(lg?'✓ Faite':(n===next?'Prochaine':'À faire'))+'</span></a>';
     }
     h+='</section>';
@@ -664,7 +699,7 @@ function viewSession(n){
       '<p class="msg" id="logmsg" aria-live="polite"></p>'+
       '<button class="btn block" type="button" data-act="savelog">Enregistrer la séance</button></section>';
   }
-  var nav='<div class="nav2">'+(n>1?'<a class="btn ghost" href="#seance-'+(n-1)+'">Séance '+(n-1)+'</a>':'<span></span>')+(n<16?'<a class="btn '+(lg?'':'ghost')+'" href="#seance-'+(n+1)+'">Séance '+(n+1)+'</a>':(lg&&nextN()===null?'<a class="btn" href="#accueil">Et maintenant ?</a>':'<span></span>'))+'</div>';
+  var nav='<div class="nav2">'+(n>1?'<a class="btn ghost" href="#seance-'+(n-1)+'">Séance '+(n-1)+'</a>':'<span></span>')+(n<16?(locked(n+1)?'<span class="btn ghost lockedbtn" aria-disabled="true">'+icon("lock",16)+' Séance '+(n+1)+'</span>':'<a class="btn '+(lg?'':'ghost')+'" href="#seance-'+(n+1)+'">Séance '+(n+1)+'</a>'):(lg&&nextN()===null?'<a class="btn" href="#accueil">Et maintenant ?</a>':'<span></span>'))+'</div>';
   return h+nav;
 }
 
@@ -672,17 +707,21 @@ function viewSession(n){
 function whyExample(){
   return '<section class="card"><details><summary>Voir un exemple</summary><div class="dbody"><ol style="margin:0;padding-left:20px;display:grid;gap:6px"><li>Pourquoi reprendre ? <b>Pour être plus en forme.</b></li><li>Pourquoi ? <b>Pour être essoufflé moins vite.</b></li><li>Pourquoi ? <b>Pour me sentir moins limité.</b></li><li>Pourquoi ? <b>Ça me frustre de sentir que mon corps ne suit pas, je ne me sens pas libre de mes mouvements.</b></li><li>Pourquoi c’est important de se sentir libre de ses mouvements ? <b>Ça me donne confiance en moi, ça me permet de mieux profiter de la vie sans être freiné.</b></li></ol></div></details></section>';
 }
-function whyFields(){
-  var h='<section class="card">';
+function whyFinal(){ for(var i=4;i>=0;i--){ if(S.why[i]&&S.why[i].trim()) return S.why[i].trim(); } return ""; }
+function whyFields(fold){
+  var h=fold?'':'<section class="card">';
   for(var i=0;i<5;i++){
     var q = i===0 ? 'Pourquoi tu veux reprendre l’activité physique ?' : 'Pourquoi ? ('+(i+1)+' sur 5)';
     h+='<div class="stack"><label class="lbl" for="why'+i+'">'+q+'</label><textarea id="why'+i+'" data-why="'+i+'" rows="2" placeholder="'+(i===0?'Ex. : pour être plus en forme':'Ta réponse')+'">'+esc(S.why[i])+'</textarea></div>';
   }
-  return h+'</section>';
+  return fold?h:h+'</section>';
+}
+function whyFold(){
+  return '<section class="card whyhl"><details><summary><span style="min-width:0"><span class="eyebrow" style="display:block;margin-bottom:6px">Mon pourquoi</span><span class="whybig">«&nbsp;'+esc(whyFinal())+'&nbsp;»</span></span></summary><div class="dbody"><p class="small muted">Toutes tes étapes. Tu peux les modifier.</p>'+whyFields(true)+'</div></details></section>';
 }
 function viewWhy(){
   return '<div class="stack"><p class="eyebrow">Motivation</p><h1>Ton pourquoi</h1><p class="muted">Pourquoi tu veux reprendre l’activité physique ? On cherche la raison profonde en se posant la question jusqu’à cinq fois. Il peut y avoir moins ou plus de cinq pourquoi : plus tu creuses, plus la réponse est profonde.</p></div>'+
-    explVid('pourquoi')+whyExample()+whyFields()+'<p class="small muted">Ta réponse la plus profonde s’affiche sur l’accueil. Note-la aussi ailleurs, dans un endroit que tu vois souvent.</p>';
+    (whyFinal()?whyFold()+explVid('pourquoi')+whyExample():explVid('pourquoi')+whyExample()+whyFields())+'<p class="small muted">Ta réponse la plus profonde s’affiche sur l’accueil. Note-la aussi ailleurs, dans un endroit que tu vois souvent.</p>';
 }
 
 /* ---------- Premier lancement ---------- */
@@ -720,6 +759,7 @@ function slotsMsg(){
   slotInit(); var s=ui.slots;
   if(s[0].d===null||s[1].d===null) return 'Choisis le jour et l’heure de chaque séance.';
   if(s[0].d===s[1].d) return 'Choisis deux jours différents.';
+  if(!/^\d{2}:\d{2}$/.test(s[0].t||'')||!/^\d{2}:\d{2}$/.test(s[1].t||'')) return 'Choisis l’heure de chaque séance.';
   if(!gapOK(s[0].d,s[1].d)) return 'Essaie de laisser au moins deux jours entre les deux séances, par exemple lundi et jeudi.';
   return '';
 }
@@ -745,15 +785,24 @@ function agendaBox(){
   });
   var g=ui.gcal||{}, ok=slotsValid(), gb='';
   [0,1].forEach(function(k){
-    gb+='<button class="btn block'+(g[k]?' ghost':'')+'" type="button" data-act="gcal" data-v="'+k+'"'+(ok?'':' disabled style="opacity:.45"')+'>'+(g[k]?'✓ ':'')+'Séance '+(k+1)+' : ouvrir dans Google Agenda</button>';
+    gb+='<button class="btn block'+(g[k]?' ghost':'')+'" type="button" data-act="gcal" data-v="'+k+'"'+(ok?'':' style="opacity:.5"')+'>'+(g[k]?'✓ ':'')+'Séance '+(k+1)+' : ouvrir dans Google Agenda</button>';
   });
-  return '<div class="stack">'+h+'</div>'+
-    '<p class="msg" id="slotmsg" aria-live="polite">'+slotsMsg()+'</p>'+
+  var ios=(phone()==='ios'), g2=ui.gcal||{};
+  var tog='<button class="link-btn" type="button" data-act="phone-toggle">'+(ios?'Je n’ai pas un iPhone (passer en Android)':'J’ai un iPhone')+'</button>';
+  var prev=(EMBED?'':' (Aperçu : le téléchargement et les liens fonctionnent sur la version hébergée.)');
+  var common='<div class="stack">'+h+'</div><p class="msg" id="slotmsg" aria-live="polite">'+slotsMsg()+'</p>';
+  if(ios){
+    return common+
+      '<button class="btn block" type="button" data-act="ics-go"'+(ok?'':' style="opacity:.5"')+'>'+(ui.icsDone?'✓ Fichier téléchargé, le télécharger à nouveau':'Ajouter mes séances à l’Agenda de l’iPhone')+'</button>'+
+      '<ol class="small" style="margin:0;padding-left:20px;display:grid;gap:6px"><li>Touche le bouton ci-dessus : un fichier se télécharge.</li><li>Ouvre-le (dans Safari, touche l’icône de téléchargement puis le fichier).</li><li>Touche <b>« Ajouter tout »</b> : tes séances arrivent dans l’app Calendrier, avec un rappel la veille et un autre 10 minutes avant.</li></ol>'+
+      '<p class="msg" id="icsmsg" aria-live="polite"></p><p class="small muted">'+prev+'</p>'+tog;
+  }
+  return common+
     '<div class="stack">'+gb+'</div>'+
     '<p class="small muted">Ton agenda s’ouvre avec la séance déjà remplie (jour, heure, répétée chaque semaine). Il te reste à appuyer sur « Enregistrer ».</p>'+
-    '<p class="msg" id="icsmsg" aria-live="polite">'+(ui.icsDone&&!(g[0]&&g[1])?'Fichier téléchargé. Ouvre-le pour ajouter tes séances à ton agenda.':'')+'</p>'+
-    '<button class="btn ghost block" type="button" data-act="ics-go">'+(ui.icsDone?'Télécharger à nouveau le fichier':'Autre agenda (iPhone, Outlook…) : télécharger le fichier')+'</button>'+
-    '<p class="small muted">Sur iPhone, ouvre le fichier téléchargé : le calendrier propose d’ajouter les séances, avec un rappel la veille et un autre 10 minutes avant.'+(EMBED?'':' (Aperçu : les liens et le téléchargement fonctionnent sur la version hébergée.)')+'</p>';
+    '<p class="msg" id="icsmsg" aria-live="polite">'+(ui.icsDone&&!(g2[0]&&g2[1])?'Fichier téléchargé. Ouvre-le pour ajouter tes séances à ton agenda.':'')+'</p>'+
+    '<button class="btn ghost block" type="button" data-act="ics-go">'+(ui.icsDone?'Télécharger à nouveau le fichier':'Autre agenda (Samsung, Outlook…) : télécharger le fichier')+'</button>'+
+    '<p class="small muted">'+prev+'</p>'+tog;
 }
 function viewAgendaGate(n){
   ui.gateTo=n;
@@ -765,10 +814,13 @@ function viewAgendaGate(n){
 }
 function viewOnboarding(){
   var step=ui.onbStep, h=topbar();
-  h+='<div class="stack"><div class="obar"><i class="on"></i><i class="'+(step>=1?'on':'')+'"></i><i class="'+(step>=2?'on':'')+'"></i></div><p class="eyebrow">Bienvenue · étape '+(step+1)+' sur 3</p></div>';
+  h+='<div class="stack"><div class="obar"><i class="on"></i><i class="'+(step>=1?'on':'')+'"></i><i class="'+(step>=2?'on':'')+'"></i><i class="'+(step>=3?'on':'')+'"></i></div><p class="eyebrow">Bienvenue · étape '+(step+1)+' sur 4</p></div>';
   if(step===0){
-    h+='<div class="stack"><h1>Bienvenue</h1><p>Ce programme t’accompagne pendant 8 semaines, à raison de 2 séances de 30 minutes par semaine. Pour commencer, comment dois-je t’appeler ?</p></div><section class="card"><label class="lbl" for="firstName">Ton prénom</label><input class="fld" id="firstName" type="text" maxlength="30" autocomplete="given-name" placeholder="Ex. : Marie" value="'+esc(S.name)+'"><p class="small muted">Facultatif. Il sert à personnaliser les messages et reste sur ton téléphone.</p></section><section class="card"><h2>Santé et sécurité</h2>'+safetyHtml()+'</section><button class="btn block" type="button" data-act="onb-name">Continuer</button>';
+    var dp=phone();
+    h+='<div class="stack"><h1>Bienvenue</h1><p>Pour adapter l’application à ton téléphone (agenda, installation), dis-moi lequel tu utilises.</p></div><section class="card"><div class="stack"><button class="btn block'+(dp==='ios'?'':' ghost')+'" type="button" data-act="phone-set" data-v="ios">iPhone</button><button class="btn block'+(dp==='android'?'':' ghost')+'" type="button" data-act="phone-set" data-v="android">Android</button></div><p class="small muted">Tu pourras le changer plus tard.</p></section>';
   } else if(step===1){
+    h+='<div class="stack"><h1>Bienvenue</h1><p>Ce programme t’accompagne pendant 8 semaines, à raison de 2 séances de 30 minutes par semaine. Pour commencer, comment dois-je t’appeler ?</p></div><section class="card"><label class="lbl" for="firstName">Ton prénom</label><input class="fld" id="firstName" type="text" maxlength="30" autocomplete="given-name" placeholder="Ex. : Marie" value="'+esc(S.name)+'"><p class="small muted">Facultatif. Il sert à personnaliser les messages et reste sur ton téléphone.</p></section><section class="card"><h2>Santé et sécurité</h2>'+safetyHtml()+'</section><button class="btn block" type="button" data-act="onb-name">Continuer</button>';
+  } else if(step===2){
     h+='<div class="stack"><h1>Ton pourquoi</h1><p>Avant de commencer, trouve la vraie raison pour laquelle tu veux reprendre l’activité physique. Pose-toi la question, puis redemande « pourquoi ? » à chaque réponse. Il peut y avoir moins ou plus de cinq pourquoi : plus tu creuses, plus la réponse est profonde.</p></div>'+
       explVid('pourquoi')+whyExample()+whyFields()+
       '<p class="msg" id="onbmsg" aria-live="polite"></p><div class="nav2"><button class="btn ghost" type="button" data-act="onb-back">Retour</button><button class="btn" type="button" data-act="onb-next">Continuer</button></div>';
@@ -986,14 +1038,30 @@ function diplomaSheet(){
 }
 /* ---------- Installation ---------- */
 var deferredInstall=null;
-window.addEventListener("beforeinstallprompt",function(e){ e.preventDefault(); deferredInstall=e; });
+window.addEventListener("beforeinstallprompt",function(e){ e.preventDefault(); deferredInstall=e; if(document.getElementById("instpage")) render(); });
 function isStandalone(){ try{ return (window.matchMedia&&window.matchMedia("(display-mode: standalone)").matches)||window.navigator.standalone===true; }catch(e){ return false; } }
 function isIOS(){ var u=navigator.userAgent||""; return /iphone|ipad|ipod/i.test(u)||(navigator.platform==="MacIntel"&&navigator.maxTouchPoints>1); }
+function phone(){ return S.phone||(isIOS()?'ios':'android'); }
 function canShowInstall(){ return EMBED && !isStandalone(); }
 function installSteps(){
   if(deferredInstall) return '<button type="button" class="btn block" data-act="install">Installer l’application</button>';
-  if(isIOS()) return '<ol class="small" style="margin:0;padding-left:20px;display:grid;gap:6px"><li>Ouvre cette page dans <b>Safari</b>.</li><li>Touche le bouton <b>Partager</b> (le carré avec une flèche vers le haut).</li><li>Choisis <b>« Sur l’écran d’accueil »</b>, puis <b>Ajouter</b>.</li></ol>';
+  if(phone()==='ios') return '<ol class="small" style="margin:0;padding-left:20px;display:grid;gap:6px"><li>Ouvre cette page dans <b>Safari</b>.</li><li>Touche le bouton <b>Partager</b> (le carré avec une flèche vers le haut).</li><li>Choisis <b>« Sur l’écran d’accueil »</b>, puis <b>Ajouter</b>.</li></ol>';
   return '<ol class="small" style="margin:0;padding-left:20px;display:grid;gap:6px"><li>Ouvre le menu de ton navigateur (les trois points <b>⋮</b>).</li><li>Touche <b>« Installer l’application »</b> ou <b>« Ajouter à l’écran d’accueil »</b>.</li><li>Confirme.</li></ol>';
+}
+function viewInstall(){
+  var ios=(phone()==='ios');
+  var bl=['Elle s’ouvre en plein écran, d’un geste, depuis ton écran d’accueil.','16 séances guidées en vidéo, avec échauffement et conseils.','Ta progression reste avec toi, sur ton téléphone.','Un rappel dans ton agenda pour ne jamais rater une séance.'];
+  var lis=''; bl.forEach(function(x){ lis+='<li><i></i><span>'+x+'</span></li>'; });
+  return '<div id="instpage" class="stack instpage">'+
+    '<img class="ilogo" alt="Logo Nico l’APA" src="'+LOGO+'">'+
+    '<p class="eyebrow">Par Nico l’APA · Activité physique et santé</p>'+
+    '<h1 class="ihero">Installe l’app Réveil musculaire</h1>'+
+    '<p class="ilead">Le programme s’utilise comme une vraie application, installée sur ton téléphone. Ça prend 30 secondes, sans passer par l’App Store.</p>'+
+    '<ul class="ibul">'+lis+'</ul>'+
+    '<section class="card"><h2>Installer sur mon téléphone</h2><div class="seg seg2" style="margin-top:4px"><button type="button" data-act="phone-pick" data-v="ios" aria-pressed="'+ios+'">iPhone</button><button type="button" data-act="phone-pick" data-v="android" aria-pressed="'+(!ios)+'">Android</button></div>'+installSteps()+'</section>'+
+    '<div class="idone"><b>C’est installé !</b> Ouvre <b>Réveil musculaire</b> <img alt="" src="'+LOGO+'"> depuis ton écran d’accueil pour commencer.</div>'+
+    '<button class="link-btn" type="button" data-act="web-skip">Continuer dans le navigateur</button>'+
+  '</div>';
 }
 function installBlock(){
   if(!canShowInstall()) return "";
@@ -1003,23 +1071,12 @@ function installCard(){
   if(!canShowInstall()||S.installDismissed) return "";
   return '<section class="card"><h2>Ouvre l’application en plein écran</h2><p class="muted">Installe-la sur ton écran d’accueil : une icône, pas de barre d’adresse, et elle reste accessible sans connexion (hors vidéos).</p><div class="nav2"><button class="btn soft" data-act="install-help">Comment faire</button><button class="btn ghost" data-act="install-dismiss">Plus tard</button></div></section>';
 }
-function applyTheme(){
-  var r=document.documentElement;
-  if(S.theme==="auto"){ if(ui.themeTouched) r.removeAttribute("data-theme"); }
-  else r.setAttribute("data-theme",S.theme);
-  try{
-    var m=document.querySelector('meta[name="theme-color"]');
-    if(m){ var dk=S.theme==="dark"||(S.theme==="auto"&&window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches); m.setAttribute("content",dk?"#12170F":"#F5F4EC"); }
-  }catch(e){}
-}
+function applyTheme(){ document.documentElement.setAttribute("data-theme","light"); }
 function settingsSheet(){
-  var th=[["auto","Auto"],["light","Clair"],["dark","Sombre"]], tb='';
-  th.forEach(function(x){ tb+='<button type="button" data-act="theme" data-v="'+x[0]+'" aria-pressed="'+(S.theme===x[0])+'">'+x[1]+'</button>'; });
   var danger = ui.wipeConfirm
     ? '<p class="small"><b>Tout effacer ?</b> Ta progression, ton pourquoi et tes créneaux seront supprimés de cet appareil. Cette action est définitive.</p><div class="nav2"><button class="btn" data-act="wipe-yes">Tout effacer</button><button class="btn ghost" data-act="wipe-no">Annuler</button></div>'
     : '<button class="btn ghost danger" data-act="wipe">Effacer mes données</button>';
   openLayer('<h2>Paramètres</h2>'+
-    '<fieldset><legend>Apparence</legend><div class="seg seg3">'+tb+'</div><p class="small muted">Auto suit le réglage clair ou sombre de ton téléphone.</p></fieldset>'+
     '<div class="stack"><label class="lbl" for="setName">Mon prénom</label><input class="fld" id="setName" type="text" maxlength="30" autocomplete="given-name" placeholder="Facultatif" value="'+esc(S.name)+'"></div>'+
     '<div class="stack"><h3>Mon programme</h3><div class="nav2"><button class="btn soft" data-act="plan">Mes créneaux et agenda</button><a class="btn soft" data-act="close" href="#pourquoi">Mon pourquoi</a></div>'+'</div>'+
     '<div class="stack"><h3>Une question ?</h3><p class="small">Écris à Nico :<br><b style="word-break:break-all">'+LINKS.mail+'</b></p><a class="btn block" href="'+LINKS.mailto+'">Écrire à Nico</a><button class="link-btn" data-act="copy" data-v="'+LINKS.mail+'">Ou copier l’adresse</button></div>'+
@@ -1150,8 +1207,10 @@ function renderTabs(active){
 function render(){
   var r=route(), v=document.getElementById("view"), html;
   document.querySelector(".tabs").hidden=!S.onboarded;
+  if(canShowInstall() && !S.webSkip){ document.querySelector(".tabs").hidden=true; v.innerHTML=viewInstall(); return; }
   if(S.onboarded && r.name==="seance" && r.n===1 && !S.logs[1] && !S.started){ S.started=true; save(); }
   if(!S.onboarded){ v.innerHTML=viewOnboarding(); return; }
+  if(r.name==="seance" && locked(r.n)){ location.replace("#seance-"+nextN()); return; }
   if(r.name==="seance" && !S.agendaDone){ v.innerHTML=viewAgendaGate(r.n); renderTabs(r.tab); return; }
   if(r.name==="seance") html=viewSession(r.n);
   else if(r.name==="programme") html=viewProgramme();
@@ -1162,6 +1221,12 @@ function render(){
   if(ui.autoStart && r.name==="seance" && r.n===ui.autoStart){ var asn=ui.autoStart; ui.autoStart=null; startAfterWarmup(asn); }
   if(r.name==="conseils" && r.tip){ setTimeout(function(){ var el=document.getElementById("tip-"+r.tip); if(el) el.scrollIntoView({block:"start"}); },60); }
 }
+document.addEventListener("input",function(e){
+  var el=e.target; if(!el||!el.getAttribute||el.getAttribute("data-slot")===null||el.getAttribute("data-f")!=="t") return;
+  slotInit(); ui.slots[parseInt(el.getAttribute("data-slot"),10)].t=el.value;
+  var okk=slotsValid(), sm=document.getElementById("slotmsg"); if(sm){ sm.className="msg"; sm.textContent=slotsMsg(); }
+  var bs=document.querySelectorAll('[data-act="gcal"],[data-act="ics-go"]'); for(var i=0;i<bs.length;i++) bs[i].style.opacity=okk?"":".5";
+});
 document.addEventListener("change",function(e){
   var el=e.target; if(!el||!el.getAttribute||el.getAttribute("data-slot")===null) return;
   slotInit(); var k=parseInt(el.getAttribute("data-slot"),10), f=el.getAttribute("data-f");
@@ -1192,10 +1257,12 @@ document.addEventListener("click",function(e){
   if(a==="intensity-ok"){ S.seenIntensity=true; save(); var yid=b.getAttribute("data-yt"), ys=parseInt(b.getAttribute("data-start")||"0",10)||0; setTimeout(closeLayer,0); if(yid) playVideo(yid,ys); return; }
   if(a==="install"){ if(deferredInstall){ var dp=deferredInstall; deferredInstall=null; try{ dp.prompt(); dp.userChoice.then(function(){ render(); closeLayer(); }); }catch(e){} } return; }
   if(a==="install-help"){ openLayer('<h2>Installer l’application</h2><p class="muted">Elle s’ouvre alors en plein écran, sans barre d’adresse, avec sa propre icône.</p>'+installSteps()+'<button class="btn block" data-act="close">Fermer</button>'); return; }
+  if(a==="phone-pick"){ S.phone=(v==="ios")?"ios":"android"; save(); render(); return; }
+  if(a==="web-skip"){ S.webSkip=true; save(); render(); window.scrollTo(0,0); return; }
   if(a==="install-dismiss"){ S.installDismissed=true; save(); render(); return; }
   if(a==="gcal"){
     var k=parseInt(v,10), im2=document.getElementById("icsmsg");
-    if(!slotsValid()){ return; }
+    if(!slotsValid()){ var sm0=document.getElementById("slotmsg"); if(sm0){ sm0.className="msg err"; sm0.textContent=slotsMsg()||"Vérifie les jours et les heures."; } return; }
     var gu=gcalUrl(k); if(!gu) return;
     var dys2=[ui.slots[0].d,ui.slots[1].d], tm2={}; tm2[dys2[0]]=ui.slots[0].t; tm2[dys2[1]]=ui.slots[1].t;
     S.slotTimes=tm2; S.icsTime=ui.slots[0].t; ui.planDraft=dys2.slice();
@@ -1211,7 +1278,7 @@ document.addEventListener("click",function(e){
   }
   if(a==="ics-go"){
     var im=document.getElementById("icsmsg");
-    if(!slotsValid()){ if(im){ im.className="msg err"; im.textContent="Choisis le jour et l’heure de tes deux séances."; } return; }
+    if(!slotsValid()){ var sm1=document.getElementById("slotmsg"); if(sm1){ sm1.className="msg err"; sm1.textContent=slotsMsg()||"Vérifie les jours et les heures."; } return; }
     var dys=[ui.slots[0].d,ui.slots[1].d], tmap={}; tmap[dys[0]]=ui.slots[0].t; tmap[dys[1]]=ui.slots[1].t;
     S.slotTimes=tmap; S.icsTime=ui.slots[0].t; ui.planDraft=dys.slice(); save();
     var savedPlan=S.plan; S.plan=dys.slice();
@@ -1231,7 +1298,6 @@ document.addEventListener("click",function(e){
   if(a==="dip-save"){ if(ui.dipBlob) saveBlob(ui.dipBlob,"diplome-reveil-musculaire.png"); return; }
   if(a==="dip-share"){ try{ navigator.share({files:[ui.dipFile],title:"Réveil musculaire à la maison",text:"J’ai terminé le programme Réveil musculaire à la maison !"}).catch(function(){}); }catch(e){} return; }
   if(a==="settings"){ ui.wipeConfirm=false; settingsSheet(); return; }
-  if(a==="theme"){ S.theme=v; ui.themeTouched=true; save(); applyTheme(); settingsSheet(); return; }
   if(a==="wipe"){ ui.wipeConfirm=true; settingsSheet(); return; }
   if(a==="wipe-no"){ ui.wipeConfirm=false; settingsSheet(); return; }
   if(a==="wipe-yes"){
@@ -1249,9 +1315,11 @@ document.addEventListener("click",function(e){
   if(a==="onb-next"){
     var any=S.why.some(function(x){return x&&x.trim();});
     if(!any){ var om=document.getElementById("onbmsg"); om.className="msg err"; om.textContent="Écris au moins ta première réponse."; return; }
-    ui.onbStep=2; ui.planDraft=(S.plan||[]).slice(); render(); window.scrollTo(0,0); return;
+    ui.onbStep=3; ui.planDraft=(S.plan||[]).slice(); render(); window.scrollTo(0,0); return;
   }
-  if(a==="onb-name"){ var fn=document.getElementById("firstName"); S.name=(fn?fn.value:"").trim().slice(0,30); save(); ui.onbStep=1; render(); window.scrollTo(0,0); return; }
+  if(a==="onb-name"){ var fn=document.getElementById("firstName"); S.name=(fn?fn.value:"").trim().slice(0,30); save(); ui.onbStep=2; render(); window.scrollTo(0,0); return; }
+  if(a==="phone-set"){ S.phone=(v==="ios")?"ios":"android"; save(); ui.onbStep=1; render(); window.scrollTo(0,0); return; }
+  if(a==="phone-toggle"){ S.phone=(phone()==="ios")?"android":"ios"; ui.gcal={}; ui.icsDone=false; save(); if(document.querySelector("#layer .slot")) icsSheet(); else render(); return; }
   if(a==="onb-back"){ ui.onbStep=Math.max(0,ui.onbStep-1); render(); window.scrollTo(0,0); return; }
   if(a==="agenda-ok"){
     if(!ui.icsDone) return;
