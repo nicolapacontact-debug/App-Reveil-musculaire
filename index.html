@@ -443,11 +443,11 @@ var TIPS = [
   {id:"carnet",title:"Remplir mon carnet",teaser:"30 secondes après chaque séance pour voir ta progression."}
 ];
 function midReached(){ return doneCount()>=8; }
-function tipOk(i){ return TIPS[i].id!=='mid' || midReached(); }
+function tipOk(i){ return TIPS[i].id!=='mid' || (midReached() && !S.tipsRead.mid); }
 function tipRefresh(){
   var td=iso(new Date());
   if(S.tipClickedOn && S.tipClickedOn<td){ S.tipIdx=(S.tipIdx+1)%TIPS.length; S.tipClickedOn=null; save(); }
-  if(midReached() && !S.midTipShown){
+  if(midReached() && !S.midTipShown && !S.tipsRead.mid){
     for(var k=0;k<TIPS.length;k++){ if(TIPS[k].id==='mid'){ S.tipIdx=k; break; } }
     S.midTipShown=true; S.tipClickedOn=null; save();
   }
@@ -614,7 +614,7 @@ function finale(){
     '<p class="small">10 % de réduction sur ton prochain programme avec le code <b>'+LINKS.code+'</b> <button class="link-btn" data-act="copy" data-v="'+LINKS.code+'">Copier</button></p></section>';
 }
 function resetSheet(){
-  openLayer('<button class="xbtn" data-act="close" aria-label="Fermer">×</button><p class="eyebrow">Refaire le programme</p><h2>Tu es sûr'+(nm()?', '+esc(nm()):'')+' ?</h2><p>Le compteur repart à zéro et tu repasses par ton pourquoi et tes deux créneaux, comme la première fois. Tes notes d’intensité actuelles sont gardées : tu pourras les comparer aux nouvelles.</p><p class="small muted">Cette fois, les repères sont plus exigeants : en renfo, plus de répétitions ou plus d’amplitude. En cardio, plus de vitesse pour un effort de 6 à 7 sur 10.</p><button class="btn block" data-act="reset-yes">Oui, je recommence</button><button class="btn ghost block" data-act="close">Non, annuler</button>');
+  openLayer('<button class="xbtn" data-act="close" aria-label="Fermer">×</button><p class="eyebrow">Refaire le programme</p><h2>Tu es sûr'+(nm()?', '+esc(nm()):'')+' ?</h2><p>Le compteur repart à zéro. Ton pourquoi et tes deux créneaux sont conservés, tu retrouves directement les nouvelles consignes d’intensité. Tes notes d’intensité actuelles sont gardées : tu pourras les comparer aux nouvelles.</p><p class="small muted">Cette fois, les repères sont plus exigeants : en renfo, plus de répétitions ou plus d’amplitude. En cardio, plus de vitesse pour un effort de 6 à 7 sur 10.</p><button class="btn block" data-act="reset-yes">Oui, je recommence</button><button class="btn ghost block" data-act="close">Non, annuler</button>');
   var sc=document.querySelector("#layer .scrim"); if(sc) sc.classList.add("center");
   var gp=document.querySelector("#layer .grip"); if(gp) gp.style.display="none";
   if(document.activeElement && document.activeElement.blur) document.activeElement.blur();
@@ -920,7 +920,9 @@ function midBilan(){
   return {n:n,html:'<div class="stack"><h3>Ce que tu as préféré</h3><p class="small muted">La partie préférée à chaque séance, d’après ton carnet.</p>'+bars+'<p>'+verdict+'</p><p class="small muted">Intensité moyenne : <b class="tnum">'+avg+' sur 10</b>. Garde ça en tête : à la fin du programme, tu pourras choisir la suite selon ce que tu préfères.</p></div>'};
 }
 function midSheet(){
-  S.midSeen=true; save();
+  S.midSeen=true; S.midTipShown=true; S.tipsRead.mid=true;
+  if(TIPS[S.tipIdx%TIPS.length].id==='mid'){ S.tipIdx=(S.tipIdx+1)%TIPS.length; S.tipClickedOn=null; }
+  save();
   var m=midBilan();
   openLayer('<p class="eyebrow">Mi-parcours</p><h2 style="font:700 22px/1.2 var(--f-display)">Déjà la moitié du programme</h2><p>'+(nm()?'Bravo '+esc(nm())+', ':'')+m.n+' séances faites sur 16. Prends un moment pour regarder la vidéo, puis jette un œil à ton bilan.</p>'+explVid('mid')+m.html+
     '<button class="btn block" data-act="close">Continuer</button>');
@@ -1359,8 +1361,9 @@ document.addEventListener("click",function(e){
   if(a==="reset-no"){ ui.confirmReset=false; render(); return; }
   if(a==="reset-yes"){
     S.archive.push({date:iso(new Date()),round:S.round||1,logs:S.logs}); S.round=(S.round||1)+1; S.logs={};
-    S.slotTimes={}; ui.slots=null; ui.gcal={}; S.agendaDone=false; S.plan=null; S.onboarded=false; S.seenIntensity=false; S.startDate=null; S.started=false; S.carnetTipSeen=false; S.missedShown=[]; S.midSeen=false; S.midTipShown=false; S.endSeen=false;
-    save(); ui.onbStep=0; ui.planDraft=[]; ui.draftN=null; ui.qNext=false; ui.confirmReset=false; closeLayer(); location.hash="#accueil"; render(); window.scrollTo(0,0); return;
+    ui.slots=null; ui.gcal={}; ui.icsDone=false; S.agendaDone=false; S.seenIntensity=false; S.startDate=null; S.started=false; S.missedShown=[]; S.midSeen=false; S.midTipShown=false; S.endSeen=false; S.tipClickedOn=null;
+    save(); ui.qNext=false; ui.chain=[]; ui.confirmReset=false; closeLayer(); location.hash="#accueil"; render(); window.scrollTo(0,0);
+    gateSheet("#seance-1",false,"J’ai compris, continuer",null,0); return;
   }
 });
 document.addEventListener("input",function(e){
